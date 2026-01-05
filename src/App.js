@@ -1,31 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
-
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [, setIsDark] = useState(false);
-
-  // Set webinar date (30 days from now as an example)
+  // Set webinar date (30 days from now as an example) - wrapped in useMemo
   const webinarDate = useMemo(() => {
     const date = new Date();
     date.setDate(date.getDate() + 13);
     date.setHours(18, 30, 0, 0); // 6:30 PM
     return date;
   }, []); // Empty dependency array means this only runs once
-
-  // Check for saved theme preference or default to dark mode
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-    } else {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +36,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Countdown timer
+  // Countdown timer - now properly depends on memoized webinarDate
   useEffect(() => {
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -68,7 +53,7 @@ function App() {
     }, 1000);
     
     return () => clearInterval(timer);
-  }, [webinarDate]);
+  }, [webinarDate]); // Now this dependency is stable
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -79,78 +64,85 @@ function App() {
       });
     }
   };
+
   const toggleFaq = (index) => {
     setExpandedFaq(expandedFaq === index ? null : index);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 dark:from-white dark:via-gray-50 dark:to-white text-white dark:text-gray-900 overflow-x-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white text-gray-900 overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 dark:bg-white/95 backdrop-blur-md py-3 shadow-lg dark:shadow-md' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-600 dark:from-blue-600 dark:to-indigo-800 bg-clip-text text-transparent">
+          <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
             desixporters
           </div>
           <div className="hidden md:flex space-x-8">
             <button 
               onClick={() => scrollToSection('hero')}
-              className={`transition-colors ${activeSection === 'hero' ? 'text-blue-400 dark:text-blue-600' : 'text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'hero' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('learn')}
-              className={`transition-colors ${activeSection === 'learn' ? 'text-blue-400 dark:text-blue-600' : 'text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'learn' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               What You'll Learn
             </button>
             <button 
               onClick={() => scrollToSection('speakers')}
-              className={`transition-colors ${activeSection === 'speakers' ? 'text-blue-400 dark:text-blue-600' : 'text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'speakers' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Speakers
             </button>
             <button 
               onClick={() => scrollToSection('details')}
-              className={`transition-colors ${activeSection === 'details' ? 'text-blue-400 dark:text-blue-600' : 'text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'details' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Details
             </button>
             <button 
               onClick={() => scrollToSection('faq')}
-              className={`transition-colors ${activeSection === 'faq' ? 'text-blue-400 dark:text-blue-600' : 'text-gray-300 dark:text-gray-600 hover:text-white dark:hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'faq' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               FAQ
             </button>
           </div>
+          <button 
+            onClick={() => scrollToSection('register')}
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
+          >
+            Register Now
+          </button>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-700 dark:bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-700 dark:bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-pulse"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-700 dark:bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 dark:opacity-5 animate-pulse"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         </div>
         
         <div className="container mx-auto px-4 z-10 relative">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-red-500/10 dark:bg-red-100 border border-red-500/30 dark:border-red-300 rounded-full px-4 py-2 mb-6">
+            <div className="inline-flex items-center bg-red-50 border border-red-200 rounded-full px-4 py-2 mb-6">
               <span className="relative flex h-3 w-3 mr-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
               </span>
-              <span className="text-red-400 dark:text-red-600 text-sm font-medium">LIVE WEBINAR</span>
+              <span className="text-red-600 text-sm font-medium">LIVE WEBINAR</span>
             </div>
             
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
               🚀 Start Export Business in 2026
             </h1>
-            <h2 className="text-xl md:text-2xl lg:text-3xl mb-4 text-blue-400 dark:text-blue-600 font-semibold">
+            <h2 className="text-xl md:text-2xl lg:text-3xl mb-4 text-blue-600 font-semibold">
               Right Product. Right Country. Right Strategy.
             </h2>
-            <p className="text-lg md:text-xl mb-8 text-gray-300 dark:text-gray-600">
+            <p className="text-lg md:text-xl mb-8 text-gray-600">
               Live 2-Hour Webinar by @desixporters & @busyowaiss (Real Exporters)
             </p>
             
@@ -163,7 +155,7 @@ function App() {
               </button>
               <button 
                 onClick={() => scrollToSection('details')}
-                className="bg-transparent border-2 border-white dark:border-gray-800 hover:bg-white dark:hover:bg-gray-800 hover:text-slate-900 dark:hover:text-white text-white dark:text-gray-900 font-bold py-4 px-8 rounded-full transition-all duration-300"
+                className="bg-transparent border-2 border-gray-800 hover:bg-gray-800 hover:text-white text-gray-800 font-bold py-4 px-8 rounded-full transition-all duration-300"
               >
                 Learn More
               </button>
@@ -171,25 +163,25 @@ function App() {
             
             <div className="flex justify-center gap-8 mb-12">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400 dark:text-blue-600">{countdown.days}</div>
-                <div className="text-sm text-gray-400 dark:text-gray-500">Days</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-600">{countdown.days}</div>
+                <div className="text-sm text-gray-500">Days</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400 dark:text-blue-600">{countdown.hours}</div>
-                <div className="text-sm text-gray-400 dark:text-gray-500">Hours</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-600">{countdown.hours}</div>
+                <div className="text-sm text-gray-500">Hours</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400 dark:text-blue-600">{countdown.minutes}</div>
-                <div className="text-sm text-gray-400 dark:text-gray-500">Minutes</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-600">{countdown.minutes}</div>
+                <div className="text-sm text-gray-500">Minutes</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-400 dark:text-blue-600">{countdown.seconds}</div>
-                <div className="text-sm text-gray-400 dark:text-gray-500">Seconds</div>
+                <div className="text-2xl md:text-3xl font-bold text-blue-600">{countdown.seconds}</div>
+                <div className="text-sm text-gray-500">Seconds</div>
               </div>
             </div>
             
             <div className="animate-bounce mt-10">
-              <svg className="w-6 h-6 mx-auto text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-6 h-6 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
             </div>
@@ -201,7 +193,7 @@ function App() {
       <section id="learn" className="py-20 relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What You'll Learn</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">What You'll Learn</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
           </div>
           
@@ -247,12 +239,12 @@ function App() {
       </section>
 
       {/* About the Speakers Section */}
-      <section id="speakers" className="py-20 bg-slate-800/50 dark:bg-gray-100">
+      <section id="speakers" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Your Instructors</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Your Instructors</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
-            <p className="mt-4 text-gray-300 dark:text-gray-600 max-w-2xl mx-auto">Learn from real exporters with years of experience in international trade</p>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Learn from real exporters with years of experience in international trade</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
@@ -276,7 +268,7 @@ function App() {
       <section id="audience" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Who Should Attend</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Who Should Attend</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
           </div>
           
@@ -306,38 +298,38 @@ function App() {
       </section>
 
       {/* Webinar Details Section */}
-      <section id="details" className="py-20 bg-slate-800/50 dark:bg-gray-100">
+      <section id="details" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Webinar Details</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Webinar Details</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-slate-800/50 dark:bg-white rounded-2xl p-8 border border-slate-700 dark:border-gray-200 shadow-lg dark:shadow-md">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-400 dark:text-blue-600">Date & Time</h3>
-                  <p className="mb-2 text-gray-300 dark:text-gray-700">{webinarDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                  <p className="text-gray-300 dark:text-gray-700">6:30 PM - 8:30 PM IST</p>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-600">Date & Time</h3>
+                  <p className="mb-2 text-gray-700">{webinarDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                  <p className="text-gray-700">6:30 PM - 8:30 PM IST</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-400 dark:text-blue-600">Duration</h3>
-                  <p className="text-gray-300 dark:text-gray-700">2 Hours + 30 Minutes Q&A</p>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-600">Duration</h3>
+                  <p className="text-gray-700">2 Hours + 30 Minutes Q&A</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-400 dark:text-blue-600">Mode</h3>
-                  <p className="text-gray-300 dark:text-gray-700">Online (Zoom)</p>
-                  <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">Link will be sent to registered participants</p>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-600">Mode</h3>
+                  <p className="text-gray-700">Online (Zoom)</p>
+                  <p className="text-sm text-gray-500 mt-2">Link will be sent to registered participants</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-4 text-blue-400 dark:text-blue-600">Language</h3>
-                  <p className="text-gray-300 dark:text-gray-700">English (Hindi support available)</p>
+                  <h3 className="text-xl font-semibold mb-4 text-blue-600">Language</h3>
+                  <p className="text-gray-700">English (Hindi support available)</p>
                 </div>
               </div>
               
-              <div className="mt-8 p-4 bg-blue-900/20 dark:bg-blue-50 rounded-lg border border-blue-700/30 dark:border-blue-200">
-                <p className="text-center text-gray-300 dark:text-gray-700">Can't attend live? Register anyway and get the recording!</p>
+              <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-center text-gray-700">Can't attend live? Register anyway and get the recording!</p>
               </div>
             </div>
           </div>
@@ -348,25 +340,25 @@ function App() {
       <section id="outcomes" className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">What You'll Achieve</h2>
-            <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-600 leading-relaxed mb-12">
-              By the end, you'll know <span className="text-blue-400 dark:text-blue-600 font-bold">WHAT</span> to export, 
-              <span className="text-indigo-400 dark:text-indigo-600 font-bold"> WHERE</span> to export, and 
-              <span className="text-purple-400 dark:text-purple-600 font-bold"> HOW</span> to start — confidently.
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">What You'll Achieve</h2>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12">
+              By the end, you'll know <span className="text-blue-600 font-bold">WHAT</span> to export, 
+              <span className="text-indigo-600 font-bold"> WHERE</span> to export, and 
+              <span className="text-purple-600 font-bold"> HOW</span> to start — confidently.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-blue-900/30 to-blue-800/30 dark:from-blue-100 dark:to-blue-50 p-6 rounded-xl border border-blue-700/30 dark:border-blue-200">
-                <div className="text-3xl font-bold text-blue-400 dark:text-blue-600 mb-2">90%</div>
-                <p className="text-gray-300 dark:text-gray-700">Reduction in research time</p>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200">
+                <div className="text-3xl font-bold text-blue-600 mb-2">90%</div>
+                <p className="text-gray-700">Reduction in research time</p>
               </div>
-              <div className="bg-gradient-to-br from-indigo-900/30 to-indigo-800/30 dark:from-indigo-100 dark:to-indigo-50 p-6 rounded-xl border border-indigo-700/30 dark:border-indigo-200">
-                <div className="text-3xl font-bold text-indigo-400 dark:text-indigo-600 mb-2">3X</div>
-                <p className="text-gray-300 dark:text-gray-700">Faster market entry</p>
+              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl border border-indigo-200">
+                <div className="text-3xl font-bold text-indigo-600 mb-2">3X</div>
+                <p className="text-gray-700">Faster market entry</p>
               </div>
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 dark:from-purple-100 dark:to-purple-50 p-6 rounded-xl border border-purple-700/30 dark:border-purple-200">
-                <div className="text-3xl font-bold text-purple-400 dark:text-purple-600 mb-2">50+</div>
-                <p className="text-gray-300 dark:text-gray-700">Countries to target</p>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl border border-purple-200">
+                <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
+                <p className="text-gray-700">Countries to target</p>
               </div>
             </div>
           </div>
@@ -374,25 +366,25 @@ function App() {
       </section>
 
       {/* Testimonials/Trust Section */}
-      <section id="testimonials" className="py-20 bg-slate-800/50 dark:bg-gray-100">
+      <section id="testimonials" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted by Exporters Worldwide</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Trusted by Exporters Worldwide</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            <div className="flex items-center justify-center h-20 bg-slate-700/30 dark:bg-gray-200 rounded-lg">
-              <span className="text-gray-400 dark:text-gray-600">Logo 1</span>
+            <div className="flex items-center justify-center h-20 bg-gray-100 rounded-lg">
+              <span className="text-gray-500">Logo 1</span>
             </div>
-            <div className="flex items-center justify-center h-20 bg-slate-700/30 dark:bg-gray-200 rounded-lg">
-              <span className="text-gray-400 dark:text-gray-600">Logo 2</span>
+            <div className="flex items-center justify-center h-20 bg-gray-100 rounded-lg">
+              <span className="text-gray-500">Logo 2</span>
             </div>
-            <div className="flex items-center justify-center h-20 bg-slate-700/30 dark:bg-gray-200 rounded-lg">
-              <span className="text-gray-400 dark:text-gray-600">Logo 3</span>
+            <div className="flex items-center justify-center h-20 bg-gray-100 rounded-lg">
+              <span className="text-gray-500">Logo 3</span>
             </div>
-            <div className="flex items-center justify-center h-20 bg-slate-700/30 dark:bg-gray-200 rounded-lg">
-              <span className="text-gray-400 dark:text-gray-600">Logo 4</span>
+            <div className="flex items-center justify-center h-20 bg-gray-100 rounded-lg">
+              <span className="text-gray-500">Logo 4</span>
             </div>
           </div>
           
@@ -423,7 +415,7 @@ function App() {
       <section id="faq" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked Questions</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
           </div>
           
@@ -452,7 +444,7 @@ function App() {
             ].map((item, index) => (
               <div key={index} className="mb-4">
                 <button
-                  className="w-full text-left p-4 bg-slate-800/50 dark:bg-white rounded-lg border border-slate-700 dark:border-gray-200 hover:border-blue-500/50 dark:hover:border-blue-300 transition-all duration-300 flex justify-between items-center"
+                  className="w-full text-left p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-300 flex justify-between items-center"
                   onClick={() => toggleFaq(index)}
                 >
                   <span className="font-medium">{item.question}</span>
@@ -467,8 +459,8 @@ function App() {
                   </svg>
                 </button>
                 {expandedFaq === index && (
-                  <div className="p-4 bg-slate-800/30 dark:bg-gray-50 rounded-b-lg border border-t-0 border-slate-700 dark:border-gray-200">
-                    <p className="text-gray-300 dark:text-gray-700">{item.answer}</p>
+                  <div className="p-4 bg-gray-50 rounded-b-lg border border-t-0 border-gray-200">
+                    <p className="text-gray-700">{item.answer}</p>
                   </div>
                 )}
               </div>
@@ -478,18 +470,18 @@ function App() {
       </section>
 
       {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 dark:bg-white/95 backdrop-blur-md p-4 border-t border-slate-700 dark:border-gray-200 transform transition-transform duration-300 z-40">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md p-4 border-t border-gray-200 transform transition-transform duration-300 z-40">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
           <div className="mb-2 sm:mb-0">
-            <p className="font-medium">🚀 Start Export Business in 2026</p>
-            <p className="text-sm text-gray-400 dark:text-gray-600">Limited seats available</p>
+            <p className="font-medium text-gray-900">🚀 Start Export Business in 2026</p>
+            <p className="text-sm text-gray-600">Limited seats available</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <a
               href="https://instagram.com/desixporters"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2 px-4 rounded-full transition-all duration-300 flex items-center"
+              className="bg-gradient-to-r w-full md:w-fit from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2 px-4 rounded-full transition-all duration-300 flex items-center"
             >
               <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
@@ -498,7 +490,7 @@ function App() {
             </a>
             <button 
               onClick={() => scrollToSection('register')}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r w-full md:w-fit from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300"
             >
               Register Now
             </button>
@@ -512,10 +504,10 @@ function App() {
 // Reusable Feature Card Component
 function FeatureCard({ icon, title, description, delay }) {
   return (
-    <div className={`bg-gradient-to-br from-slate-800/50 to-slate-900/50 dark:from-white dark:to-gray-50 p-6 rounded-xl border border-slate-700/50 dark:border-gray-200 hover:border-blue-500/50 dark:hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-fade-in`} style={{ animationDelay: `${delay}ms` }}>
+    <div className={`bg-white p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-fade-in`} style={{ animationDelay: `${delay}ms` }}>
       <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-gray-400 dark:text-gray-600">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
+      <p className="text-gray-600">{description}</p>
     </div>
   );
 }
@@ -523,20 +515,20 @@ function FeatureCard({ icon, title, description, delay }) {
 // Reusable Speaker Card Component
 function SpeakerCard({ name, title, description, stats }) {
   return (
-    <div className="bg-slate-800/50 dark:bg-white rounded-xl p-6 border border-slate-700/50 dark:border-gray-200 hover:border-blue-500/50 dark:hover:border-blue-300 transition-all duration-300">
+    <div className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300">
       <div className="flex items-center mb-4">
         <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-2xl font-bold mr-4 text-white">
           {name.charAt(1).toUpperCase()}
         </div>
         <div>
-          <h3 className="text-xl font-bold">{name}</h3>
-          <p className="text-blue-400 dark:text-blue-600">{title}</p>
+          <h3 className="text-xl font-bold text-gray-900">{name}</h3>
+          <p className="text-blue-600">{title}</p>
         </div>
       </div>
-      <p className="text-gray-300 dark:text-gray-700 mb-4">{description}</p>
+      <p className="text-gray-700 mb-4">{description}</p>
       <div className="flex flex-wrap gap-2">
         {stats.map((stat, index) => (
-          <span key={index} className="bg-slate-700/50 dark:bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-300 dark:text-gray-700">{stat}</span>
+          <span key={index} className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700">{stat}</span>
         ))}
       </div>
     </div>
@@ -546,10 +538,10 @@ function SpeakerCard({ name, title, description, stats }) {
 // Reusable Attendee Card Component
 function AttendeeCard({ icon, title, description }) {
   return (
-    <div className="text-center p-6 rounded-xl hover:bg-white/5 dark:hover:bg-gray-50 transition-all duration-300">
+    <div className="text-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300">
       <div className="text-5xl mb-4">{icon}</div>
-      <h3 className="text-xl font-bold mb-3">{title}</h3>
-      <p className="text-gray-400 dark:text-gray-600">{description}</p>
+      <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
+      <p className="text-gray-600">{description}</p>
     </div>
   );
 }
@@ -557,7 +549,7 @@ function AttendeeCard({ icon, title, description }) {
 // Reusable Testimonial Card Component
 function TestimonialCard({ name, role, content, rating }) {
   return (
-    <div className="bg-slate-800/50 dark:bg-white rounded-xl p-6 border border-slate-700/50 dark:border-gray-200">
+    <div className="bg-white rounded-xl p-6 border border-gray-200">
       <div className="flex mb-4">
         {[...Array(rating)].map((_, i) => (
           <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -565,10 +557,10 @@ function TestimonialCard({ name, role, content, rating }) {
           </svg>
         ))}
       </div>
-      <p className="text-gray-300 dark:text-gray-700 mb-4 italic">"{content}"</p>
+      <p className="text-gray-700 mb-4 italic">"{content}"</p>
       <div>
-        <p className="font-bold">{name}</p>
-        <p className="text-sm text-gray-400 dark:text-gray-600">{role}</p>
+        <p className="font-bold text-gray-900">{name}</p>
+        <p className="text-sm text-gray-600">{role}</p>
       </div>
     </div>
   );
