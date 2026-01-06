@@ -84,7 +84,6 @@ function App() {
       currency: 'INR',
       name: 'Desixporters',
       description: 'Export Business Webinar - 2026',
-      image: 'https://example.com/your-logo.png',
       handler: function (response) {
         setShowNotification(true);
         setTimeout(() => setShowNotification(false), 5000);
