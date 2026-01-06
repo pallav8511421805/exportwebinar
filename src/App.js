@@ -401,7 +401,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-4 text-blue-600">Language</h3>
-                  <p className="text-gray-700">English (Hindi support available)</p>
+                  <p className="text-gray-700">English, Hindi, Gujarati</p>
                 </div>
               </div>
               
@@ -519,7 +519,7 @@ function App() {
           </div>
 
           {/* Book Now CTA */}
-          <div className="text-center mt-16">
+          <div className="text-center mt-16 mb-10">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
               className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
