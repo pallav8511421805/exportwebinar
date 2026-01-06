@@ -14,7 +14,7 @@ function App() {
   const webinarDate = useMemo(() => {
     const date = new Date();
     date.setDate(date.getDate() + 12);
-    date.setHours(18, 30, 0, 0); // 6:30 PM
+    date.setHours(11, 0, 0, 0); // 11:00 AM
     return date;
   }, []); // Empty dependency array means this only runs once
 
@@ -357,7 +357,7 @@ function App() {
       <section id="speakers" className="py-20 bg-gradient-to-br from-gray-50 to-yellow-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Your Instructors</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet The People Behind This Webinar</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Learn from real exporters with years of experience in international trade</p>
           </div>
@@ -365,17 +365,41 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <SpeakerCard 
               name="@desixporters"
-              title="Export Business Strategist"
-              description="15+ years of experience in export business across 20+ countries. Specialized in identifying profitable export opportunities and building sustainable international trade networks."
-              stats={["20+ Countries", "500+ Export Deals", "15+ Years Experience"]}
+              title={
+                <>
+                Export Business Strategist 
+                <br />
+                Global Trade Consultant
+                </>
+              }
+              description={<>
+                Active export entrepreneur working hands-on with Indian exporters to enter and scale in global markets.
+                <br /> <br />
+                Focused on practical export strategy, buyer discovery, and deal execution across Agri food, spices, herbal, and other products.
+                <br /> <br />
+                Experience built through real buyer meetings, trade delegations, and live export operations.
+              </>}
+              stats={["📄 Multiple Export Industries", "🚀 Active Export Operations", "🌍 5+ International Markets"]}
               imageUrl={desixportsimage} 
               instagramUrl="https://www.instagram.com/desixporters/"
             />
             <SpeakerCard 
               name="@busyowaiss"
-              title="Global Trade Consultant"
-              description="Expert in export documentation, logistics, and compliance. Helped 1000+ businesses start their export journey with practical, actionable strategies."
-              stats={["1000+ Businesses", "10+ Industries", "50+ Trade Shows"]}
+              title={
+                <>
+                Global Trade Consultant 
+                <br/>
+                Export Operations & Compliance
+                </>
+              }
+              description={
+                <>
+                Export operations specialist focused on the execution layer of international trade.
+                <br /> <br />
+                Experienced in documentation, logistics coordination, compliance processes, and exporter hand-holding.
+                </>
+              }
+              stats={["🏢 100+ Containers", "📄 Multiple Export Industries", "🤝 Trade Shows & Buyer Meets Experience"]}
               imageUrl={busyowissimage} 
               instagramUrl="https://www.instagram.com/busyowaiss/"
             />
@@ -457,7 +481,7 @@ function App() {
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-gray-900">Date & Time</h3>
                     <p className="mb-1 text-gray-700">{webinarDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                    <p className="text-gray-700">6:30 PM - 8:30 PM IST</p>
+                    <p className="text-gray-700">11:00 AM - 01:00 PM</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -468,7 +492,7 @@ function App() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-gray-900">Duration</h3>
-                    <p className="text-gray-700">2 Hours + 30 Minutes Q&A</p>
+                    <p className="text-gray-700">1.30 Hours + 30 Minutes Q&A</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -690,7 +714,7 @@ function SpeakerCard({ name, title, description, stats, imageUrl, instagramUrl }
         </div>
       </div>
       <p className="text-gray-700 mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap flex-col gap-3">
         {stats.map((stat, index) => (
           <span key={index} className="bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700">{stat}</span>
         ))}
