@@ -112,7 +112,7 @@ function App() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
+            <div className="text-xl font-bold bg-gradient-to-r from-yellow-600 to-indigo-700 bg-clip-text text-transparent">
               Desixporters
             </div>
           </div>
@@ -120,31 +120,31 @@ function App() {
           <div className="hidden md:flex space-x-8">
             <button 
               onClick={() => scrollToSection('hero')}
-              className={`transition-colors ${activeSection === 'hero' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'hero' ? 'text-yellow-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('learn')}
-              className={`transition-colors ${activeSection === 'learn' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'learn' ? 'text-yellow-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               What You'll Learn
             </button>
             <button 
               onClick={() => scrollToSection('speakers')}
-              className={`transition-colors ${activeSection === 'speakers' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'speakers' ? 'text-yellow-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Speakers
             </button>
             <button 
               onClick={() => scrollToSection('details')}
-              className={`transition-colors ${activeSection === 'details' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'details' ? 'text-yellow-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Details
             </button>
             <button 
               onClick={() => scrollToSection('faq')}
-              className={`transition-colors ${activeSection === 'faq' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+              className={`transition-colors ${activeSection === 'faq' ? 'text-yellow-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               FAQ
             </button>
@@ -153,13 +153,13 @@ function App() {
           <div className="flex items-center space-x-4">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-medium py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Book Now @999
             </button>
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-gray-900 hover:text-blue-600 focus:outline-none"
+              className="md:hidden text-gray-900 hover:text-yellow-600 focus:outline-none"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 {mobileMenuOpen ? (
@@ -178,35 +178,35 @@ function App() {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <button 
                 onClick={() => scrollToSection('hero')}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                 style={{transitionDelay: mobileMenuOpen ? '50ms' : '0ms'}}
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('learn')}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                 style={{transitionDelay: mobileMenuOpen ? '100ms' : '0ms'}}
               >
                 What You'll Learn
               </button>
               <button 
                 onClick={() => scrollToSection('speakers')}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                 style={{transitionDelay: mobileMenuOpen ? '150ms' : '0ms'}}
               >
                 Speakers
               </button>
               <button 
                 onClick={() => scrollToSection('details')}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                 style={{transitionDelay: mobileMenuOpen ? '200ms' : '0ms'}}
               >
                 Details
               </button>
               <button 
                 onClick={() => scrollToSection('faq')}
-                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-yellow-600 hover:bg-gray-50 w-full text-left transform transition-all duration-200 hover:translate-x-1 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}
                 style={{transitionDelay: mobileMenuOpen ? '250ms' : '0ms'}}
               >
                 FAQ
@@ -220,13 +220,13 @@ function App() {
       <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20">
         {/* Overlay Image Background */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-indigo-900/70 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/70 to-indigo-900/70 z-10"></div>
           <img 
             src={exportimage} 
             alt="Export Business Background" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
         </div>
         
@@ -243,7 +243,7 @@ function App() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
               🚀 Start Export Business in 2026
             </h1>
-            <h2 className="text-xl md:text-2xl lg:text-3xl mb-4 text-blue-300 font-semibold">
+            <h2 className="text-xl md:text-2xl lg:text-3xl mb-4 text-yellow-300 font-semibold">
               Right Product. Right Country. Right Strategy.
             </h2>
             <p className="text-lg md:text-xl mb-8 text-gray-200">
@@ -253,7 +253,7 @@ function App() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <button 
                 onClick={() => {scrollToSection('payment');handlePayment()}}
-                className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Book Your Slot Now @999
               </button>
@@ -267,19 +267,19 @@ function App() {
             
             <div className="flex justify-center gap-8 mb-12">
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-300">{countdown.days}</div>
+                <div className="text-2xl md:text-3xl font-bold text-yellow-300">{countdown.days}</div>
                 <div className="text-sm text-gray-300">Days</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-300">{countdown.hours}</div>
+                <div className="text-2xl md:text-3xl font-bold text-yellow-300">{countdown.hours}</div>
                 <div className="text-sm text-gray-300">Hours</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-300">{countdown.minutes}</div>
+                <div className="text-2xl md:text-3xl font-bold text-yellow-300">{countdown.minutes}</div>
                 <div className="text-sm text-gray-300">Minutes</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-blue-300">{countdown.seconds}</div>
+                <div className="text-2xl md:text-3xl font-bold text-yellow-300">{countdown.seconds}</div>
                 <div className="text-sm text-gray-300">Seconds</div>
               </div>
             </div>
@@ -298,7 +298,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">What You'll Learn</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Everything you need to know to start and scale your export business in 2026</p>
           </div>
           
@@ -345,7 +345,7 @@ function App() {
           <div className="text-center mt-16">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -354,11 +354,11 @@ function App() {
       </section>
 
       {/* About the Speakers Section */}
-      <section id="speakers" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="speakers" className="py-20 bg-gradient-to-br from-gray-50 to-yellow-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Meet Your Instructors</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Learn from real exporters with years of experience in international trade</p>
           </div>
           
@@ -385,7 +385,7 @@ function App() {
           <div className="text-center mt-16">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -398,7 +398,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Who Should Attend</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">This webinar is designed for anyone looking to enter or expand in the export business</p>
           </div>
           
@@ -429,7 +429,7 @@ function App() {
           <div className="text-center mt-16">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -438,19 +438,19 @@ function App() {
       </section>
 
       {/* Webinar Details Section */}
-      <section id="details" className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section id="details" className="py-20 bg-gradient-to-br from-yellow-50 to-indigo-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Webinar Details</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
           </div>
           
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-xl">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="bg-yellow-100 p-3 rounded-lg mr-4">
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
@@ -461,8 +461,8 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="bg-yellow-100 p-3 rounded-lg mr-4">
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -472,8 +472,8 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="bg-yellow-100 p-3 rounded-lg mr-4">
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
@@ -484,8 +484,8 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="bg-yellow-100 p-3 rounded-lg mr-4">
+                    <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
                   </div>
@@ -496,8 +496,8 @@ function App() {
                 </div>
               </div>
               
-              <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200 flex items-center">
-                <svg className="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <div className="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200 flex items-center">
+                <svg className="w-6 h-6 text-yellow-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <p className="text-gray-700">Can't attend live? Register anyway and get the recording!</p>
@@ -509,7 +509,7 @@ function App() {
           <div className="text-center mt-16">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -523,14 +523,14 @@ function App() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-900">What You'll Achieve</h2>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12">
-              By the end, you'll know <span className="text-blue-600 font-bold">WHAT</span> to export, 
+              By the end, you'll know <span className="text-yellow-600 font-bold">WHAT</span> to export, 
               <span className="text-indigo-600 font-bold"> WHERE</span> to export, and 
               <span className="text-purple-600 font-bold"> HOW</span> to start — confidently.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl border border-blue-200 transform transition-all duration-300 hover:scale-105">
-                <div className="text-3xl font-bold text-blue-600 mb-2">90%</div>
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl border border-yellow-200 transform transition-all duration-300 hover:scale-105">
+                <div className="text-3xl font-bold text-yellow-600 mb-2">90%</div>
                 <p className="text-gray-700">Reduction in research time</p>
               </div>
               <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl border border-indigo-200 transform transition-all duration-300 hover:scale-105">
@@ -548,7 +548,7 @@ function App() {
           <div className="text-center mt-16">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -557,11 +557,11 @@ function App() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="faq" className="py-20 bg-gradient-to-br from-gray-50 to-yellow-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked Questions</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-indigo-600 mx-auto"></div>
             <p className="mt-4 text-gray-600 max-w-2xl mx-auto">Got questions? We've got answers</p>
           </div>
           
@@ -590,7 +590,7 @@ function App() {
             ].map((item, index) => (
               <div key={index} className="mb-4">
                 <button
-                  className="w-full text-left p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 transition-all duration-300 flex justify-between items-center"
+                  className="w-full text-left p-4 bg-white rounded-lg border border-gray-200 hover:border-yellow-300 transition-all duration-300 flex justify-between items-center"
                   onClick={() => toggleFaq(index)}
                 >
                   <span className="font-medium">{item.question}</span>
@@ -617,7 +617,7 @@ function App() {
           <div className="text-center mt-16 mb-10">
             <button 
               onClick={() => {scrollToSection('payment');handlePayment()}}
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
+              className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg text-lg"
             >
               Book Your Slot Now @999
             </button>
@@ -634,7 +634,7 @@ function App() {
           </div>
           <button 
             onClick={() => {scrollToSection('payment');handlePayment()}}
-            className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-yellow-500 to-indigo-600 hover:from-yellow-600 hover:to-indigo-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300"
           >
             Book Now @999
           </button>
@@ -647,7 +647,7 @@ function App() {
 // Reusable Feature Card Component
 function FeatureCard({ icon, title, description, delay }) {
   return (
-    <div className={`bg-white p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-fade-in`} style={{ animationDelay: `${delay}ms` }}>
+    <div className={`bg-white p-6 rounded-xl border border-gray-200 hover:border-yellow-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl animate-fade-in`} style={{ animationDelay: `${delay}ms` }}>
       <div className="text-4xl mb-4">{icon}</div>
       <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
       <p className="text-gray-600">{description}</p>
@@ -658,7 +658,7 @@ function FeatureCard({ icon, title, description, delay }) {
 // Updated SpeakerCard Component with Hover Effect
 function SpeakerCard({ name, title, description, stats, imageUrl, instagramUrl }) {
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-200 hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
+    <div className="bg-white rounded-xl p-6 border border-gray-200 hover:border-yellow-300 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl">
       <div className="flex items-center mb-4">
         <a 
           href={instagramUrl}
@@ -682,11 +682,11 @@ function SpeakerCard({ name, title, description, stats, imageUrl, instagramUrl }
             href={instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors cursor-pointer"
+            className="text-xl font-bold text-gray-900 hover:text-yellow-600 transition-colors cursor-pointer"
           >
             {name}
           </a>
-          <p className="text-blue-600">{title}</p>
+          <p className="text-yellow-600">{title}</p>
         </div>
       </div>
       <p className="text-gray-700 mb-4">{description}</p>
