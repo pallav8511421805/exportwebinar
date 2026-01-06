@@ -510,7 +510,7 @@ function App() {
                   </svg>
                 </button>
                 {expandedFaq === index && (
-                  <div className="p-4 bg-gray-50 rounded-b-lg border border-t-0 border-gray-200">
+                  <div className="p-4 bg-white rounded-b-lg border border-t-0 border-gray-200">
                     <p className="text-gray-700">{item.answer}</p>
                   </div>
                 )}
