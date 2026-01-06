@@ -77,33 +77,36 @@ function App() {
   };
 
   const handlePayment = () => {
-    const options = {
-      key: 'rzp_live_S0UBsjkXOCFECY', // Replace with your Razorpay key
-      amount: 99900, // Amount in paise (999 * 100)
-      currency: 'INR',
-      name: 'Desixporters',
-      description: 'Export Business Webinar - 2026',
-      handler: function (response) {
-        alert(`Thank you for registering for our Live Export Webinar.
-        Your seat is confirmed. Webinar details and joining link will be shared with you shortly via WhatsApp/Email.
-        We look forward to seeing you live!`)
-      },
-      notes: {
-        address: 'Export Business Webinar Registration',
-        webinar_date: webinarDate.toISOString()
-      },
-      theme: {
-        color: '#3B82F6'
-      },
-      modal: {
-        ondismiss: function() {
-          alert('Something went wrong...')
-        }
-      }
-    };
+    // const options = {
+    //   key: 'rzp_live_S0UBsjkXOCFECY', // Replace with your Razorpay key
+    //   amount: 99900, // Amount in paise (999 * 100)
+    //   currency: 'INR',
+    //   name: 'Desixporters',
+    //   description: 'Export Business Webinar - 2026',
+    //   handler: function (response) {
+    //     alert(`Thank you for registering for our Live Export Webinar.
+    //     Your seat is confirmed. Webinar details and joining link will be shared with you shortly via WhatsApp/Email.
+    //     We look forward to seeing you live!`)
+    //   },
+    //   notes: {
+    //     address: 'Export Business Webinar Registration',
+    //     webinar_date: webinarDate.toISOString()
+    //   },
+    //   theme: {
+    //     color: '#3B82F6'
+    //   },
+    //   modal: {
+    //     ondismiss: function() {
+    //       alert('Something went wrong...')
+    //     }
+    //   }
+    // };
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+    // const rzp = new window.Razorpay(options);
+    // rzp.open();
+
+    const link = 'https://rzp.io/rzp/desixporters'
+    window.open(link,'new')
   };
 
   return (
