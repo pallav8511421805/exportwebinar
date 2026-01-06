@@ -9,7 +9,6 @@ function App() {
   const [expandedFaq, setExpandedFaq] = useState(null);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
   
   // Set webinar date (30 days from now as an example) - wrapped in useMemo
   const webinarDate = useMemo(() => {
@@ -85,12 +84,9 @@ function App() {
       name: 'Desixporters',
       description: 'Export Business Webinar - 2026',
       handler: function (response) {
-        setShowNotification(true);
-        setTimeout(() => setShowNotification(false), 5000);
-        console.log('Payment Details:', {
-          payment_id: response.razorpay_payment_id,
-          amount: 999
-        });
+        alert(`Thank you for registering for our Live Export Webinar.
+        Your seat is confirmed. Webinar details and joining link will be shared with you shortly via WhatsApp/Email.
+        We look forward to seeing you live!`)
       },
       notes: {
         address: 'Export Business Webinar Registration',
@@ -112,20 +108,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
-      {/* Notification Toast */}
-      {showNotification && (
-        <div className="fixed top-20 right-5 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500 animate-slide-in-right">
-          <div className="flex items-center">
-            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            <span>Registration successful! Check your email for details.</span>
-          </div>
-        </div>
-      )}
-
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white'}`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
             <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
@@ -136,31 +120,31 @@ function App() {
           <div className="hidden md:flex space-x-8">
             <button 
               onClick={() => scrollToSection('hero')}
-              className={`transition-colors ${activeSection === 'hero' ? 'text-blue-600' : isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-blue-600'}`}
+              className={`transition-colors ${activeSection === 'hero' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Home
             </button>
             <button 
               onClick={() => scrollToSection('learn')}
-              className={`transition-colors ${activeSection === 'learn' ? 'text-blue-600' : isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-blue-600'}`}
+              className={`transition-colors ${activeSection === 'learn' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               What You'll Learn
             </button>
             <button 
               onClick={() => scrollToSection('speakers')}
-              className={`transition-colors ${activeSection === 'speakers' ? 'text-blue-600' : isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-blue-600'}`}
+              className={`transition-colors ${activeSection === 'speakers' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Speakers
             </button>
             <button 
               onClick={() => scrollToSection('details')}
-              className={`transition-colors ${activeSection === 'details' ? 'text-blue-600' : isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-blue-600'}`}
+              className={`transition-colors ${activeSection === 'details' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               Details
             </button>
             <button 
               onClick={() => scrollToSection('faq')}
-              className={`transition-colors ${activeSection === 'faq' ? 'text-blue-600' : isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-blue-600'}`}
+              className={`transition-colors ${activeSection === 'faq' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
             >
               FAQ
             </button>
