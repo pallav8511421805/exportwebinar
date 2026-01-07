@@ -12,10 +12,8 @@ function App() {
   
   // Set webinar date (30 days from now as an example) - wrapped in useMemo
   const webinarDate = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() + 12);
-    date.setHours(11, 0, 0, 0); // 11:00 AM
-    return date;
+    return new Date(2026, 0, 18, 11, 0, 0, 0); 
+    // Month is 0-based → 0 = January
   }, []); // Empty dependency array means this only runs once
 
   useEffect(() => {
@@ -483,7 +481,7 @@ function App() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-gray-900">Date & Time</h3>
-                    <p className="mb-1 text-gray-700">{webinarDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <p className="mb-1 text-gray-700">Sunday, January 18, 2026</p>
                     <p className="text-gray-700">11:00 AM - 01:00 PM</p>
                   </div>
                 </div>
